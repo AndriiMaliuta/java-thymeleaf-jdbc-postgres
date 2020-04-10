@@ -6,7 +6,8 @@ import java.util.List;
 
 public class DBConnector {
 
-    private static final String GET_CITIES = "SELECT * FROM cities";
+    private static final String GET_CITIES = "SELECT * FROM public.cities";
+//    private static final String CREATE_CITY = "INSERT INTO cities VALUES(" +  + ")";
 
     private static Connection connection;
 
@@ -24,6 +25,18 @@ public class DBConnector {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean createCity(String name, long population) {
+        try {
+            PreparedStatement statement =
+                    connection.prepareStatement("INSERT INTO cities() VALUES(" + population + "," + name + ")");
+            statement.executeQuery();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return true;
     }
 
     public static List<City> getAllCities() {

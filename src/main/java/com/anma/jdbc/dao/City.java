@@ -2,6 +2,7 @@ package com.anma.jdbc.dao;
 
 public class City {
 
+    private long id;
     private String name;
     private long population;
 
@@ -24,5 +25,13 @@ public class City {
 
     public void setPopulation(long population) {
         this.population = population;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
