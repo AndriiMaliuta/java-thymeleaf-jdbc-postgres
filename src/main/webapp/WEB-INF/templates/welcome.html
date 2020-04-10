@@ -1,0 +1,17 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Welcome</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <header>
+      <a href="/cats-1/cat">Cat</a>
+    </header>
+
+    <p th:text="#{welcome.msg}">Welcome Offline</p>
+    <p>Date : <span th:text="${date}">Sat Oct 24 2015</span></p>
+    <p th:text="${name}"></p>
+
+  </body>
+</html>
