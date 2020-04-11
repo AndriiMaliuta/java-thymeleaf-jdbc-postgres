@@ -1,5 +1,8 @@
 package com.anma.jdbc.dao;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class City {
 
     private long id;

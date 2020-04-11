@@ -14,7 +14,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(urlPatterns = "/home")
+@WebServlet(urlPatterns = "/")
 public class HomeServlet extends HttpServlet {
 
     @Override

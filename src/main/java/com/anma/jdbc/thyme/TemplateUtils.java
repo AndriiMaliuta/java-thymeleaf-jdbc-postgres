@@ -17,7 +17,7 @@ public class TemplateUtils {
         templateResolver.setPrefix("/WEB-INF/templates/");
         templateResolver.setSuffix(".html");
         templateResolver.setCacheTTLMs(3600000L);
-        templateResolver.setCacheable(true);
+        templateResolver.setCacheable(false);
         templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
     }
