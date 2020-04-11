@@ -9,41 +9,46 @@ public class DBConnector {
     private static final String GET_CITIES = "SELECT * FROM public.cities";
 //    private static final String CREATE_CITY = "INSERT INTO cities VALUES(" +  + ")";
 
-    private static Connection connection;
+    public Connection getConnection() throws SQLException {
+            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/cities", "java", "porkie-java");
+    };
 
-    static {
+//    static {
+//
+//        String jdbcUrl = ";
+//        String user = "java";
+//        String passwod = "porkie-java";
+//
+//        try {
+//            System.out.println("Connecting to DB");
+//            connection = DriverManager.getConnection(jdbcUrl, user, passwod);
+//            System.out.println("Connection successful");
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-        String jdbcUrl = "jdbc:postgresql://localhost:5432/cities";
-        String user = "java";
-        String passwod = "porkie-java";
+    public boolean createCity(long id, String name, long population) throws SQLException {
 
-        try {
-            System.out.println("Connecting to DB");
-            connection = DriverManager.getConnection(jdbcUrl, user, passwod);
-            System.out.println("Connection successful");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static boolean createCity(String name, long population) {
-        try {
+        try(Connection connection = getConnection()) {
             PreparedStatement statement =
-                    connection.prepareStatement("INSERT INTO cities() VALUES(" + population + "," + name + ")");
-            statement.executeQuery();
+                   connection.prepareStatement("INSERT INTO cities VALUES(" + id + ",'" + name + "'," + population + ")");
+            return statement.execute();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } finally {
+            getConnection().close();
         }
-        return true;
+        return false;
     }
 
-    public static List<City> getAllCities() {
+    public List<City> getAllCities() throws SQLException {
 
         List<City> cities = new LinkedList<>();
 
-        try {
+        try(Connection connection = getConnection()) {
             PreparedStatement statement = connection.prepareStatement(GET_CITIES);
             ResultSet resultSet = statement.executeQuery();
 
@@ -54,6 +59,8 @@ public class DBConnector {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } finally {
+            getConnection().close();
         }
         return cities;
     }

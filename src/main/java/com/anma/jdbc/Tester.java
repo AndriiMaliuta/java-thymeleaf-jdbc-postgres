@@ -6,6 +6,7 @@ import com.anma.jdbc.repositories.CityrepositoryImpl;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Tester {
 
@@ -17,14 +18,19 @@ public class Tester {
 
         try {
             System.out.println("Connecting to DB");
-            Connection connection = DriverManager.getConnection(jdbcUrl, user, password);
+            new DBConnector().getConnection();
             System.out.println("Connection successful");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        System.out.println(DBConnector.createCity("Minsk", 245645645));
-//        System.out.println(new CityrepositoryImpl().getCities());
+//        System.out.println(DBConnector.createCity(5,"Osaka", 567645645));
+        try {
+            new CityrepositoryImpl().getCities().forEach(c -> System.out.println(c.getName() + " ||" + c.getId()));
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
