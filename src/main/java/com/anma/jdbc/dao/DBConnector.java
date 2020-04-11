@@ -10,7 +10,9 @@ public class DBConnector {
 //    private static final String CREATE_CITY = "INSERT INTO cities VALUES(" +  + ")";
 
     public Connection getConnection() throws SQLException {
-            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/cities", "java", "porkie-java");
+            return DriverManager.getConnection(PropertiesConfig.getProperty(PropertiesConfig.DB_URL),
+                                               PropertiesConfig.getProperty(PropertiesConfig.DB_LOGIN),
+                                               PropertiesConfig.getProperty(PropertiesConfig.DB_PASSWORD));
     };
 
 //    static {

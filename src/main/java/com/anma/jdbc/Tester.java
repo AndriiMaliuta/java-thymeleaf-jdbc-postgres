@@ -7,17 +7,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class Tester {
 
-    public static void main(String[] args) {
-
-        String jdbcUrl = "jdbc:postgresql://localhost:5432/cities";
-        String user = "java";
-        String password = "porkie-java";
+    public static void main(String[] args) throws SQLException {
 
         try {
             System.out.println("Connecting to DB");
+//            Connection connection = DriverManager.getConnection(jdbcUrl, user, password);
             new DBConnector().getConnection();
             System.out.println("Connection successful");
 
@@ -25,12 +23,14 @@ public class Tester {
             e.printStackTrace();
         }
 
-//        System.out.println(DBConnector.createCity(5,"Osaka", 567645645));
-        try {
+//        System.out.println(new DBConnector().createCity(1,"Osaka", 567645645));
+//        try {
             new CityrepositoryImpl().getCities().forEach(c -> System.out.println(c.getName() + " ||" + c.getId()));
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+//
+//
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
     }
+
 }

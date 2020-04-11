@@ -9,12 +9,11 @@ public class PropertiesConfig {
     public static final String DB_LOGIN = "db.login";
     public static final String DB_PASSWORD = "db.password";
 
-    private static Properties properties;
+    private static Properties properties = new Properties();
 
     public static String getProperty(String name) {
-        if (properties == null) {
-
-            try (InputStream inputStream = PropertiesConfig.class.getResourceAsStream("database.properties")) {
+        if (properties.isEmpty()) {
+            try (InputStream inputStream = PropertiesConfig.class.getClassLoader().getResourceAsStream("eleph-database.properties")) {
                 properties.load(inputStream);
             } catch (Exception e) {
                 e.printStackTrace();
