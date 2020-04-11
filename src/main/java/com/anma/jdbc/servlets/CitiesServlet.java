@@ -22,9 +22,8 @@ public class CitiesServlet extends HttpServlet {
         Map<String, Object> variables = new HashMap<>();
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/cities", "java", "porkie-java");
-            ResultSet resultSet = connection.prepareStatement("SELECT * FROM cities").executeQuery();
-            variables.put("cities", resultSet.first());
+            variables.put("cities", new CityrepositoryImpl().getCities());
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
