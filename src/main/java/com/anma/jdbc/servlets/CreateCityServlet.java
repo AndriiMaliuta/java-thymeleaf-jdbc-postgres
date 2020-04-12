@@ -32,6 +32,8 @@ public class CreateCityServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        Map<String, Object> variables = new HashMap<>();
+
         try {
             new CityrepositoryImpl().createCity(
                     new City(UUID.randomUUID(), req.getParameter("name"), Long.parseLong(req.getParameter("population"))));
@@ -41,6 +43,7 @@ public class CreateCityServlet extends HttpServlet {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
+//        Application.process(req.getServletContext(), req, resp,"cities", variables);
+        resp.sendRedirect(req.getContextPath() + "/cities");
     }
 }

@@ -66,11 +66,13 @@ public class DBConnector {
 
         try (Connection connection = getConnection()) {
 
-            ResultSet resultSet = connection.prepareStatement("SELECT * FROM cities WHERE NAME = ?").executeQuery();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cities WHERE name LIKE ?");
+            statement.setString(1, name);
+            ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
                 cities.add(new City(
-                        UUID.fromString(resultSet.getString("cityId")),
+                        UUID.fromString(resultSet.getString("city_id")),
                         resultSet.getString(name),
                         resultSet.getLong("population")
                 ));

@@ -31,7 +31,7 @@ public class CityResource {
 
     @GET
     @Path("/{cityName}")
-    public List<City> getCItiesByName(@PathParam("cityName") String cityName) throws SQLException, ClassNotFoundException {
+    public List<City> getCitiesByName(@PathParam("cityName") String cityName) throws SQLException, ClassNotFoundException {
         return new CityrepositoryImpl().getCitiesByName(cityName);
     }
 }
