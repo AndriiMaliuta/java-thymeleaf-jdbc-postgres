@@ -1,15 +1,17 @@
 package com.anma.jdbc.dao;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.UUID;
 
 @XmlRootElement
 public class City {
 
-    private long id;
+    private UUID id;
     private String name;
     private long population;
 
-    public City(String name, long population) {
+    public City(UUID id, String name, long population) {
+        this.id = id;
         this.name = name;
         this.population = population;
     }
@@ -30,11 +32,11 @@ public class City {
         this.population = population;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 }

@@ -18,7 +18,7 @@ public class CityResource {
     private final Cityrepository cityrepository = new CityrepositoryImpl();
 
     @GET
-    public List<City> getCities() {
+    public List<City> getCities() throws ClassNotFoundException {
 
         try {
             return cityrepository.getCities();
@@ -30,8 +30,8 @@ public class CityResource {
     }
 
     @GET
-    @Path("/{cityId}")
-    public City getCIty(@PathParam("cityId") long cityId) {
-        return new City("Zagreb", 1234567);
+    @Path("/{cityName}")
+    public List<City> getCItiesByName(@PathParam("cityName") String cityName) throws SQLException, ClassNotFoundException {
+        return new CityrepositoryImpl().getCitiesByName(cityName);
     }
 }

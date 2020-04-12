@@ -18,6 +18,11 @@ import java.util.Map;
 public class HomeServlet extends HttpServlet {
 
     @Override
+    public void init() throws ServletException {
+
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Map<String, Object> variablesMap = new HashMap<String, Object>();
@@ -26,6 +31,7 @@ public class HomeServlet extends HttpServlet {
         Calendar cal = Calendar.getInstance();
 
         variablesMap.put("today", dateFormat.format(cal.getTime()));
+        variablesMap.put("contextPath", req.getContextPath());
 
         Application.process(req.getServletContext(), req, resp, "home", variablesMap);
 

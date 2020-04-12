@@ -13,9 +13,24 @@
 
     <h1>Cities</h1>
 
-<!--    <th:block th:each="var : ${variables.values()}">-->
-<!--        <p th:text="${var}"></p>-->
-<!--    </th:block>-->
+    <a th:href="@{{contextPath}/create-city(contextPath=${contextPath})}" href="">Create City</a>
+    <br>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Population</th>
+        </tr>
+        <th:block th:each="city : ${cities}">
+        <tr>
+            <td th:text="${city.id}"></td>
+            <td th:text="${city.name}"></td>
+            <td th:text="${city.population}"></td>
+        </tr>
+        </th:block>
+
+    </table>
 
 </body>
 

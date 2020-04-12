@@ -15,7 +15,7 @@
 
     <p th:text="${today}"></p>
     <br>
-    <a href="/cities">Cities</a>
+    <a th:href="@{{contextPath}/cities(contextPath=${contextPath})}" href="/cities">Cities</a>
 
 </body>
 

@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface Cityrepository {
 
-    public List<City> getCities() throws SQLException;
+    public List<City> getCities() throws SQLException, ClassNotFoundException;
+    public City createCity(City city) throws SQLException, ClassNotFoundException;
+    public List<City> getCitiesByName(String name) throws SQLException, ClassNotFoundException;
 }
