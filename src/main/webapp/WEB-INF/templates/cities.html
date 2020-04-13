@@ -42,7 +42,7 @@
             <td th:text="${city.name}"></td>
             <td th:text="${city.population}"></td>
             <td >
-                <a class="button" href="" th:href="@{/cities/update-city(id=${city.id})}">Update</a>
+                <a class="button" href="" th:href="@{{contextPath}/cities/update-city(contextPath=${contextPath},id=${city.id})}">Update</a>
             </td>
         </tr>
         </th:block>

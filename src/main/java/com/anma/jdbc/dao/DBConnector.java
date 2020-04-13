@@ -93,9 +93,12 @@ public class DBConnector {
                 statement1.setString(1, city.getName());
                 statement1.setLong(2, city.getPopulation());
                 statement1.setString(3, id);
+
                 ResultSet resultSet = statement1.executeQuery();
+
                 City updatedCity = new City(resultSet.getString("name"), resultSet.getLong("population"));
                 System.out.println("********** Updated city is === " + updatedCity.toString());
+
                 return updatedCity;
             }
 //            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cities WHERE city_id = ?");
