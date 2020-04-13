@@ -13,10 +13,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
-@WebServlet(urlPatterns = "/create-city")
-public class CreateCityServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/cities/update-city")
+public class UpdateCityServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,26 +23,32 @@ public class CreateCityServlet extends HttpServlet {
         Map<String, Object> variables = new HashMap<>();
 
         variables.put("contextPath", req.getContextPath());
+        variables.put("id", req.getParameter("id"));
 
-        Application.process(req.getServletContext(), req, resp,"create-city", variables);
+        System.out.println("******* Getting Update page fir city with id == ");
+
+        Application.process(req.getServletContext(), req, resp,"update-city", variables);
 
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         Map<String, Object> variables = new HashMap<>();
 
         try {
-            new CityrepositoryImpl().createCity(
-                    new City(req.getParameter("name"), Long.parseLong(req.getParameter("population"))));
-
+            new CityrepositoryImpl().updateCity(
+                    new City(
+                            req.getParameter("name"),
+                            Long.parseLong(req.getParameter("population"))),
+                    req.getParameter("id"));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-//        Application.process(req.getServletContext(), req, resp,"cities", variables);
+
+        //        Application.process(req.getServletContext(), req, resp,"cities", variables);
         resp.sendRedirect(req.getContextPath() + "/cities");
     }
 }

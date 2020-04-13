@@ -13,5 +13,5 @@ public interface Cityrepository {
 
     public City createCity(City city) throws SQLException, ClassNotFoundException;
 
-    City updateCity(City city) throws SecurityException;
+    City updateCity(City city, String name) throws SecurityException, SQLException, ClassNotFoundException;
 }

@@ -1,0 +1,16 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Update city</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+  <p th:text="${id}"></p>
+  <form th:action="@{/cities/update-city(id=${id})}" action="" method="post">
+    <input type="text" name="name" placeholder="Name"><br>
+    <input type="text" name="population" placeholder="Population"><br>
+    <button type="submit">Update</button>
+  </form>
+
+  </body>
+</html>

@@ -19,8 +19,8 @@ public class CityrepositoryImpl implements Cityrepository {
     }
 
     @Override
-    public City updateCity(City city) throws SecurityException {
-        return new DBConnector().updateCity(city);
+    public City updateCity(City city, String id) throws SecurityException, SQLException, ClassNotFoundException {
+        return new DBConnector().updateCity(city, id);
     }
 
     public List<City> getCitiesByName(String name) throws SQLException, ClassNotFoundException {

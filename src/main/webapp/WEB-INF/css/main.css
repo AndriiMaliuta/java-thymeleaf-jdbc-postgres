@@ -3,3 +3,8 @@ body {
     padding: 7px;
     color: red;
 }
+
+.table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}

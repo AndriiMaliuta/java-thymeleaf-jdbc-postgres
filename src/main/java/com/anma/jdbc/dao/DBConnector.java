@@ -18,13 +18,13 @@ public class DBConnector {
                 PropertiesConfig.getProperty(PropertiesConfig.DB_PASSWORD));
     };
 
-    public boolean createCity(City cIty) throws SQLException, ClassNotFoundException {
+    public boolean createCity(City city) throws SQLException, ClassNotFoundException {
 
         try(Connection connection = getConnection()) {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO cities VALUES(?,?,?)");
-            statement.setString(1, cIty.getId().toString());
-            statement.setString(2, cIty.getName().toString());
-            statement.setLong(3, cIty.getPopulation());
+            statement.setString(1, city.getId().toString());
+            statement.setString(2, city.getName().toString());
+            statement.setLong(3, city.getPopulation());
             return statement.execute();
 
         } catch (SQLException throwables) {
@@ -45,10 +45,8 @@ public class DBConnector {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                City city = new City(
-                        UUID.fromString(resultSet.getString("city_id")),
-                        resultSet.getString("name"),
-                        resultSet.getLong("population"));
+                City city = new City(resultSet.getString("name"), resultSet.getLong("population"));
+                city.setId(UUID.fromString(resultSet.getString("city_id")));
                 cities.add(city);
             }
 
@@ -72,11 +70,9 @@ public class DBConnector {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                cities.add(new City(
-                        UUID.fromString(resultSet.getString("city_id")),
-                        resultSet.getString("name"),
-                        resultSet.getLong("population")
-                ));
+                City city = new City(resultSet.getString("name"), resultSet.getLong("population"));
+                city.setId(UUID.fromString(resultSet.getString("city_id")));
+                cities.add(city);
             }
 
         } finally {
@@ -86,8 +82,31 @@ public class DBConnector {
         return cities;
     }
 
-    public City updateCity(City city) {
-        return null;
+    public City updateCity(City city, String id) throws SQLException, ClassNotFoundException {
+
+        try (Connection connection = getConnection()) {
+
+            if (city.getName() != null && city.getPopulation() > 0) {
+
+                PreparedStatement statement1 = connection.prepareStatement("UPDATE cities SET name = ?, population = ? WHERE city_id = ?");
+                System.out.println(statement1.toString());
+                statement1.setString(1, city.getName());
+                statement1.setLong(2, city.getPopulation());
+                statement1.setString(3, id);
+                ResultSet resultSet = statement1.executeQuery();
+                City updatedCity = new City(resultSet.getString("name"), resultSet.getLong("population"));
+                System.out.println("********** Updated city is === " + updatedCity.toString());
+                return updatedCity;
+            }
+//            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cities WHERE city_id = ?");
+//            statement.setString(1, id);
+//            ResultSet resultSet = statement.executeQuery();
+//            City foundCity = new City(resultSet.getString("name"), resultSet.getLong("population"));
+//            foundCity.setName(city.getName());
+//            foundCity.setPopulation(city.getPopulation());
+        }
+
+        return new City("error", 0);
     }
 }
 

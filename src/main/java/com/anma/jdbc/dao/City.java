@@ -10,8 +10,8 @@ public class City {
     private String name;
     private long population;
 
-    public City(UUID id, String name, long population) {
-        this.id = id;
+    public City(String name, long population) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.population = population;
     }
@@ -38,5 +38,14 @@ public class City {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", population=" + population +
+                '}';
     }
 }

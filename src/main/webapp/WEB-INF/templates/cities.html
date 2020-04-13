@@ -5,8 +5,21 @@
 <head>
     <title>Cities</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/main.css">
     <!--    <link rel="stylesheet" type="text/css" media="all"-->
     <!--          href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />-->
+    <style>
+        body {
+            margin: 10px;
+            padding: 7px;
+            color: darkolivegreen;
+        }
+
+        .table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,17 +29,21 @@
     <a th:href="@{{contextPath}/create-city(contextPath=${contextPath})}" href="">Create City</a>
     <br>
 
-    <table>
+    <table class="table">
         <tr>
             <th>ID</th>
             <th>Name</th>
             <th>Population</th>
+            <th>Action</th>
         </tr>
         <th:block th:each="city : ${cities}">
         <tr>
             <td th:text="${city.id}"></td>
             <td th:text="${city.name}"></td>
             <td th:text="${city.population}"></td>
+            <td >
+                <a class="button" href="" th:href="@{/cities/update-city(id=${city.id})}">Update</a>
+            </td>
         </tr>
         </th:block>
 
