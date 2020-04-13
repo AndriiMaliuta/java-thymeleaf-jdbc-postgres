@@ -18,6 +18,11 @@ public class CityrepositoryImpl implements Cityrepository {
          return city;
     }
 
+    @Override
+    public City updateCity(City city) throws SecurityException {
+        return new DBConnector().updateCity(city);
+    }
+
     public List<City> getCitiesByName(String name) throws SQLException, ClassNotFoundException {
         return new DBConnector().getCitiesByName(name);
     }

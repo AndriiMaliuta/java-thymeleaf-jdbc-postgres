@@ -12,7 +12,7 @@ public class DBConnector {
 //    private static final String CREATE_CITY = "INSERT INTO cities VALUES(" +  + ")";
 
     public Connection getConnection() throws SQLException, ClassNotFoundException {
-        Class.forName("org.postgresql.Driver");
+        Class.forName("org.postgresql.Driver");                                                             //TODO for working in servlets
         return DriverManager.getConnection(PropertiesConfig.getProperty(PropertiesConfig.DB_URL),
                 PropertiesConfig.getProperty(PropertiesConfig.DB_LOGIN),
                 PropertiesConfig.getProperty(PropertiesConfig.DB_PASSWORD));
@@ -67,13 +67,14 @@ public class DBConnector {
         try (Connection connection = getConnection()) {
 
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM cities WHERE name LIKE ?");
+            System.out.println(statement);
             statement.setString(1, name);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
                 cities.add(new City(
                         UUID.fromString(resultSet.getString("city_id")),
-                        resultSet.getString(name),
+                        resultSet.getString("name"),
                         resultSet.getLong("population")
                 ));
             }
@@ -84,4 +85,20 @@ public class DBConnector {
 
         return cities;
     }
+
+    public City updateCity(City city) {
+        return null;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
