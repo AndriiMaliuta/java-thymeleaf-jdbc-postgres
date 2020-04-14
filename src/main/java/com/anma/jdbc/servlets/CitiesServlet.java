@@ -1,5 +1,6 @@
 package com.anma.jdbc.servlets;
 
+import com.anma.jdbc.repositories.Cityrepository;
 import com.anma.jdbc.repositories.CityrepositoryImpl;
 import com.anma.jdbc.thyme.Application;
 
@@ -17,6 +18,8 @@ import java.util.Map;
 @WebServlet(urlPatterns = "/cities")
 public class CitiesServlet extends HttpServlet {
 
+    private final Cityrepository cityrepository = new CityrepositoryImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -24,7 +27,7 @@ public class CitiesServlet extends HttpServlet {
 
         try {
 
-            variables.put("cities", new CityrepositoryImpl().getCities());
+            variables.put("cities", cityrepository.getCities());
             variables.put("contextPath", req.getContextPath());
 
         } catch (SQLException throwables) {

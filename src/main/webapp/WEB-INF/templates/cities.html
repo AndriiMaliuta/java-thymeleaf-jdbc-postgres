@@ -4,7 +4,7 @@
 
 <head>
     <title>Cities</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="../css/main.css">
     <!--    <link rel="stylesheet" type="text/css" media="all"-->
     <!--          href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />-->
@@ -18,36 +18,44 @@
         .table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
+            padding: 3px;
+            margin: 4px;
+        }
+
+        th {
+            background: chocolate;
+            color: white;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>Cities</h1>
+<h1>Cities</h1>
 
-    <a th:href="@{{contextPath}/create-city(contextPath=${contextPath})}" href="">Create City</a>
-    <br>
+<a th:href="@{{contextPath}/create-city(contextPath=${contextPath})}" href="">Create City</a>
+<br>
 
-    <table class="table">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Population</th>
-            <th>Action</th>
-        </tr>
-        <th:block th:each="city : ${cities}">
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Population</th>
+        <th>Action</th>
+    </tr>
+    <th:block th:each="city : ${cities}">
         <tr>
             <td th:text="${city.id}"></td>
             <td th:text="${city.name}"></td>
             <td th:text="${city.population}"></td>
-            <td >
-                <a class="button" href="" th:href="@{{contextPath}/cities/update-city(contextPath=${contextPath},id=${city.id})}">Update</a>
+            <td>
+                <a class="button" href=""
+                   th:href="@{{contextPath}/cities/update-city(contextPath=${contextPath},id=${city.id})}">Update</a>
             </td>
         </tr>
-        </th:block>
+    </th:block>
 
-    </table>
+</table>
 
 </body>
 

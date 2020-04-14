@@ -7,6 +7,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" media="all"
           href="../../css/mian.css" th:href="@{/css/main.css}" />
+    <style>
+        .button {
+            background: darkcyan;
+            border-radius: 6px;
+            margin: 4px;
+            padding: 4px;
+            color: white;
+            text-decoration: none;
+        }
+        .button :hover {
+            background: darkgreen;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,9 +27,17 @@
 <h1>Home</h1>
 
 <p th:text="${today}"></p>
+<p id="js-today"></p>
 <br>
-<a th:href="@{{contextPath}/cities(contextPath=${contextPath})}" href="/cities">Cities</a>
+<a class="button" th:href="@{{contextPath}/cities(contextPath=${contextPath})}" href="/cities">Cities</a>
 
+<script>
+    const datePara = document.getElementById('js-today');
+    function addData() {
+        datePara.innerHTML = `${new Date().toString()}`
+    }
+    setTimeout(1000, addData)
+</script>
 </body>
 
 </html>
