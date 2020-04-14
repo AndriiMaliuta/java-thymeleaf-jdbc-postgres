@@ -30,14 +30,13 @@ public class CitiesServlet extends HttpServlet {
             variables.put("cities", cityrepository.getCities());
             variables.put("contextPath", req.getContextPath());
 
-        } catch (SQLException throwables) {
+        } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
 
         System.out.println("*********** Inside cities servlet");
         System.out.println(variables.get("cities"));
+
         Application.process(req.getServletContext(), req, resp,"cities", variables);
 
     }

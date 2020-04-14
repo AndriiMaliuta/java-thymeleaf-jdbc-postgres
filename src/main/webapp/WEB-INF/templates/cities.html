@@ -33,7 +33,7 @@
 
 <h1>Cities</h1>
 
-<a th:href="@{{contextPath}/create-city(contextPath=${contextPath})}" href="">Create City</a>
+<a th:href="@{{contextPath}/cities/create-city(contextPath=${contextPath})}" href="">Create City</a>
 <br>
 
 <table class="table">
@@ -41,7 +41,7 @@
         <th>ID</th>
         <th>Name</th>
         <th>Population</th>
-        <th>Action</th>
+        <th>Actions</th>
     </tr>
     <th:block th:each="city : ${cities}">
         <tr>
@@ -51,6 +51,8 @@
             <td>
                 <a class="button" href=""
                    th:href="@{{contextPath}/cities/update-city(contextPath=${contextPath},id=${city.id})}">Update</a>
+                <a style="color: red" class="button" href=""
+                   th:href="@{{contextPath}/cities/delete-city(contextPath=${contextPath},id=${city.id})}">Delete</a>
             </td>
         </tr>
     </th:block>

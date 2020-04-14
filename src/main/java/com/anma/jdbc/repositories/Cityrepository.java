@@ -4,6 +4,7 @@ import com.anma.jdbc.dao.City;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.UUID;
 
 public interface Cityrepository {
 
@@ -13,5 +14,7 @@ public interface Cityrepository {
 
     public City createCity(City city) throws SQLException, ClassNotFoundException;
 
-    City updateCity(City city, String name) throws SecurityException, SQLException, ClassNotFoundException;
+    City updateCityByID(City city, String name) throws SecurityException, SQLException, ClassNotFoundException;
+
+    public void deleteCityByID(String id);
 }

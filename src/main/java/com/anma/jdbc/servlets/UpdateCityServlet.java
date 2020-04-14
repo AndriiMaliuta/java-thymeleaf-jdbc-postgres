@@ -40,7 +40,7 @@ public class UpdateCityServlet extends HttpServlet {
 //        Map<String, Object> variables = new HashMap<>();
 
         try {
-            cityrepository.updateCity(
+            cityrepository.updateCityByID(
                     new City(
                             req.getParameter("name"),
                             Long.parseLong(req.getParameter("population"))),

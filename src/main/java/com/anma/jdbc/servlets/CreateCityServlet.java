@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-@WebServlet(urlPatterns = "/create-city")
+@WebServlet(urlPatterns = "/cities/create-city")
 public class CreateCityServlet extends HttpServlet {
 
     private final Cityrepository cityrepository = new CityrepositoryImpl();
@@ -44,10 +44,8 @@ public class CreateCityServlet extends HttpServlet {
                             req.getParameter("name"),
                             Long.parseLong(req.getParameter("population"))));
 
-        } catch (SQLException throwables) {
+        } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
 //        Application.process(req.getServletContext(), req, resp,"cities", variables);
         resp.sendRedirect(req.getContextPath() + "/cities");

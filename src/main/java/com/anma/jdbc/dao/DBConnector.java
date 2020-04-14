@@ -111,6 +111,20 @@ public class DBConnector {
 
         return new City("error", 0);
     }
+
+    public void deleteCityByID(String ID) {
+
+        try (Connection connection = getConnection()) {
+
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM cities WHERE city_id = ?");
+            statement.setString(1, ID);
+            statement.execute();
+            System.out.println("********** Deleted city with ID == " + ID);
+
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }
 
 
