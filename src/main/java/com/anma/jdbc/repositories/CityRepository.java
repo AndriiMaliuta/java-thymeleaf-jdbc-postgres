@@ -4,9 +4,8 @@ import com.anma.jdbc.dao.City;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.UUID;
 
-public interface Cityrepository {
+public interface CityRepository {
 
     public List<City> getCities() throws SQLException, ClassNotFoundException;
 

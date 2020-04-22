@@ -1,34 +1,34 @@
 package com.anma.jdbc.repositories;
 
 import com.anma.jdbc.dao.City;
-import com.anma.jdbc.dao.DBConnector;
+import com.anma.jdbc.jdbc.JdbcDBConnector;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class CityrepositoryImpl implements Cityrepository {
+public class JdbcCityRepositoryImpl implements CityRepository {
 
     public List<City> getCities() throws SQLException, ClassNotFoundException {
 
-        return new DBConnector().getAllCities();
+        return new JdbcDBConnector().getAllCities();
     }
 
     public City createCity(City city) throws SQLException, ClassNotFoundException {
-         new DBConnector().createCity(city);
+         new JdbcDBConnector().createCity(city);
          return city;
     }
 
     @Override
     public City updateCityByID(City city, String id) throws SecurityException, SQLException, ClassNotFoundException {
-        return new DBConnector().updateCity(city, id);
+        return new JdbcDBConnector().updateCity(city, id);
     }
 
     public List<City> getCitiesByName(String name) throws SQLException, ClassNotFoundException {
-        return new DBConnector().getCitiesByName(name);
+        return new JdbcDBConnector().getCitiesByName(name);
     }
 
     @Override
     public void deleteCityByID(String id) {
-        new DBConnector().deleteCityByID(id);
+        new JdbcDBConnector().deleteCityByID(id);
     }
 }

@@ -1,5 +1,6 @@
 package com.anma.jdbc.dao;
 
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.UUID;
 
@@ -9,6 +10,9 @@ public class City {
     private UUID id;
     private String name;
     private long population;
+
+    public City() {
+    }
 
     public City(String name, long population) {
         this.id = UUID.randomUUID();

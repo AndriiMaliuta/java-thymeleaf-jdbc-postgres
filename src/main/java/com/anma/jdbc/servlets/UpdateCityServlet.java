@@ -1,8 +1,8 @@
 package com.anma.jdbc.servlets;
 
 import com.anma.jdbc.dao.City;
-import com.anma.jdbc.repositories.Cityrepository;
-import com.anma.jdbc.repositories.CityrepositoryImpl;
+import com.anma.jdbc.repositories.CityRepository;
+import com.anma.jdbc.repositories.JdbcCityRepositoryImpl;
 import com.anma.jdbc.thyme.Application;
 
 import javax.servlet.ServletException;
@@ -18,7 +18,7 @@ import java.util.Map;
 @WebServlet(urlPatterns = "/cities/update-city")
 public class UpdateCityServlet extends HttpServlet {
 
-    private final Cityrepository cityrepository = new CityrepositoryImpl();
+    private final CityRepository CityRepository = new JdbcCityRepositoryImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,7 +40,7 @@ public class UpdateCityServlet extends HttpServlet {
 //        Map<String, Object> variables = new HashMap<>();
 
         try {
-            cityrepository.updateCityByID(
+            CityRepository.updateCityByID(
                     new City(
                             req.getParameter("name"),
                             Long.parseLong(req.getParameter("population"))),

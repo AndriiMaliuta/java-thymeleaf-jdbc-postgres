@@ -1,7 +1,12 @@
 package com.anma.jdbc;
 
-import com.anma.jdbc.dao.DBConnector;
-import com.anma.jdbc.repositories.CityrepositoryImpl;
+import com.anma.jdbc.dao.City;
+import com.anma.jdbc.dao.HiberCity;
+import com.anma.jdbc.hibernate.HibernateDBConnector;
+import com.anma.jdbc.jdbc.JdbcDBConnector;
+import com.anma.jdbc.repositories.JdbcCityRepositoryImpl;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import java.sql.SQLException;
 
@@ -9,19 +14,29 @@ public class Tester {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-        try {
-            System.out.println("Connecting to DB");
-//            Connection connection = DriverManager.getConnection(jdbcUrl, user, password);
-            new DBConnector().getConnection();
-            System.out.println("Connection successful");
+// CREATE       System.out.println(new HibernateDBConnector().createCity(new HiberCity("Hiber 2", 456789)));
+//  GET
+//        System.out.println(new HibernateDBConnector().getCityByName("Hiber 2").getName());;
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        new HibernateDBConnector().getAllCities().forEach(city -> System.out.println(city.getName()));
+
+
+
+
+
+//        try {
+//            System.out.println("Connecting to DB");
+////            Connection connection = DriverManager.getConnection(jdbcUrl, user, password);
+//            new JdbcDBConnector().getConnection();
+//            System.out.println("Connection successful");
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
 //        System.out.println(new DBConnector().createCity(1,"Osaka", 567645645));
 
-        new CityrepositoryImpl().getCities().forEach(c -> System.out.println(c.getName() + " ||" + c.getId()));
+//        new JdbcCityRepositoryImpl().getCities().forEach(c -> System.out.println(c.getName() + " ||" + c.getId()));
 
     }
 

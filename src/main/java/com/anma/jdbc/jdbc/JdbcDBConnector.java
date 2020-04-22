@@ -1,4 +1,6 @@
-package com.anma.jdbc.dao;
+package com.anma.jdbc.jdbc;
+
+import com.anma.jdbc.dao.City;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -6,16 +8,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
-public class DBConnector {
+public class JdbcDBConnector {
 
     private static final String GET_CITIES = "SELECT * FROM public.cities";
 //    private static final String CREATE_CITY = "INSERT INTO cities VALUES(" +  + ")";
 
     public Connection getConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");                                                             //TODO for working in servlets
-        return DriverManager.getConnection(PropertiesConfig.getProperty(PropertiesConfig.DB_URL),
-                PropertiesConfig.getProperty(PropertiesConfig.DB_LOGIN),
-                PropertiesConfig.getProperty(PropertiesConfig.DB_PASSWORD));
+        return DriverManager.getConnection(JdbcPropertiesConfig.getProperty(JdbcPropertiesConfig.DB_URL),
+                JdbcPropertiesConfig.getProperty(JdbcPropertiesConfig.DB_LOGIN),
+                JdbcPropertiesConfig.getProperty(JdbcPropertiesConfig.DB_PASSWORD));
     };
 
     public boolean createCity(City city) throws SQLException, ClassNotFoundException {

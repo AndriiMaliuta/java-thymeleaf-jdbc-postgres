@@ -1,8 +1,8 @@
 package com.anma.jdbc.rest;
 
 import com.anma.jdbc.dao.City;
-import com.anma.jdbc.repositories.Cityrepository;
-import com.anma.jdbc.repositories.CityrepositoryImpl;
+import com.anma.jdbc.repositories.CityRepository;
+import com.anma.jdbc.repositories.JdbcCityRepositoryImpl;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -15,13 +15,13 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class CityResource {
 
-    private final Cityrepository cityrepository = new CityrepositoryImpl();
+    private final CityRepository CityRepository = new JdbcCityRepositoryImpl();
 
     @GET
     public List<City> getCities() throws ClassNotFoundException {
 
         try {
-            return cityrepository.getCities();
+            return CityRepository.getCities();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -32,6 +32,6 @@ public class CityResource {
     @GET
     @Path("/{cityName}")
     public List<City> getCitiesByName(@PathParam("cityName") String cityName) throws SQLException, ClassNotFoundException {
-        return new CityrepositoryImpl().getCitiesByName(cityName);
+        return new JdbcCityRepositoryImpl().getCitiesByName(cityName);
     }
 }
