@@ -30,7 +30,7 @@ public class JpaDBConnector {
 
     }
 
-    public List<HiberCity> hetAllCities() {
+    public List<HiberCity> getAllCities() {
 
         getEntityManager().getTransaction().begin();
 
